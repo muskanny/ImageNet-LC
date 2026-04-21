@@ -82,7 +82,7 @@ ImageNet-LC/
 ## Installation
 
 ```bash
-git clone https://github.com/<your-username>/ImageNet-LC.git
+git clone https://github.com/muskanny/ImageNet-LC.git
 cd ImageNet-LC
 
 python -m venv .venv
