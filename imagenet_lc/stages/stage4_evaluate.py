@@ -98,6 +98,10 @@ def run(
         f"{len(clean_files)} model(s)."
     )
 
+    
+    if corrupted_dir:
+        corruptions = sorted(os.listdir(corrupted_dir))
+
     ce_results = corruption_error.compute_table(
         model_pred_files=corr_files,
         corruptions=corruptions,
