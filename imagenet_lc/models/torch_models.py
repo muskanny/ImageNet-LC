@@ -67,15 +67,6 @@ class AlexNet(_TorchvisionClassifier):
     builder = staticmethod(tvm.alexnet)
 
 
-@register_model("resnet50v2")
-class ResNet50v2(_TorchvisionClassifier):
-    # Torchvision only ships ResNet50 v1 IMAGENET1K_V2 weights. Paper uses
-    # the Keras ResNet50V2 architecture; we use the closest torchvision
-    # equivalent.
-    weights_enum = tvm.ResNet50_Weights
-    builder = staticmethod(tvm.resnet50)
-
-
 @register_model("vgg19")
 class VGG19(_TorchvisionClassifier):
     weights_enum = tvm.VGG19_Weights
