@@ -84,12 +84,23 @@ def run(
     """
     os.makedirs(output_dir, exist_ok=True)
 
+
     # --- Corruption-error metrics ---------------------------------------
     corr_files, clean_files = _collect_prediction_files(predictions_dir)
     if not corr_files:
         raise SystemExit(
             f"No <model>_corrupted.json files found under {predictions_dir}. "
             "Run Stage 3 first."
+        )
+    if baseline_model not in corr_files:
+        raise SystemExit(
+            f"Baseline model '{baseline_model}' is missing from the corrupted predictions. "
+            f"Run inference on it first: its error rates are the CE denominator (Eq. 1)."
+        )
+    if baseline_model not in clean_files:
+        raise SystemExit(
+            f"Baseline model '{baseline_model}' is missing from the clean predictions. "
+            f"Run inference on it first: its clean accuracy is required for relative metrics (Eq. 2)."
         )
 
     print(
@@ -98,14 +109,13 @@ def run(
         f"{len(clean_files)} model(s)."
     )
 
-    
     if corrupted_dir:
         corruptions = sorted(os.listdir(corrupted_dir))
 
     ce_results = corruption_error.compute_table(
         model_pred_files=corr_files,
         corruptions=corruptions,
-        clean_pred_files=clean_files if clean_files else None,
+        clean_pred_files=clean_files,
         baseline_model=baseline_model,
     )
     ce_table_text = corruption_error.format_table(ce_results, corruptions)
