@@ -78,7 +78,13 @@ class NASNetMobile(_TimmClassifier):
     # timm ships 'nasnetalarge' (large variant) as the canonical NASNet.
     # If the user truly wants the Mobile variant it isn't in timm; we fall
     # back to 'mobilenetv3_large_100' which matches the paper's spirit.
-    timm_name = "mobilenetv3_large_100"
+    timm_name = "nasnetalarge"
+    image_size = 224
+
+
+@register_model("resnet50v2")
+class ResNet50v2(_TimmClassifier):
+    timm_name = "resnetv2_50"
     image_size = 224
 
 
