@@ -7,11 +7,8 @@ Every CNN from Table 1 is exposed under a short name matching the paper
 
 Note on specific architectures
 ------------------------------
-- ``ResNet50V2`` (the paper uses Keras' v2 variant). Torchvision's
-  ``resnet50`` is v1. The Keras v2 variant is not available in torchvision.
-  We use ``resnet50`` here as the closest available standard checkpoint.
-- ``Xception`` and ``NASNet-Mobile`` are not in torchvision; they come
-  from ``timm`` in ``timm_models.py``.
+- ``Xception``, ``NASNet-Mobile`` and ``ResNet50V2`` are not in torchvision; 
+they come from ``timm`` in ``timm_models.py``.
 """
 
 import torch

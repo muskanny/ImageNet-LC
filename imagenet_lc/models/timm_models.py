@@ -8,10 +8,8 @@ has a more canonical ImageNet checkpoint:
     - ``nasnetmobile``   (CNN, timm: 'nasnetalarge' — nasnet_mobile is the
                          preferred short name but ``nasnetmobile`` is used
                          in the paper; timm ships ``nasnet_mobile`` under
-                         the name ``nasnetalarge`` for the large variant,
-                         so we use the MobileNetV3-like ``mobilenet_v3_large``
-                         as a stand-in only if ``nasnetmobile`` isn't
-                         shipped in the installed timm version).
+                         the name ``nasnetalarge`` for the large variant.)
+    - ``resnet50v2``     (CNN, timm: 'resnetv2_50')                    
     - ``vit``            (ViT-B/16 ImageNet-1k)
     - ``deit``           (DeiT-B/16 ImageNet-1k)
     - ``swin``           (Swin-B ImageNet-1k)
@@ -75,9 +73,6 @@ class Xception(_TimmClassifier):
 
 @register_model("nasnetmobile")
 class NASNetMobile(_TimmClassifier):
-    # timm ships 'nasnetalarge' (large variant) as the canonical NASNet.
-    # If the user truly wants the Mobile variant it isn't in timm; we fall
-    # back to 'mobilenetv3_large_100' which matches the paper's spirit.
     timm_name = "nasnetalarge"
     image_size = 224
 
